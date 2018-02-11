@@ -13,6 +13,7 @@ function PostList(props) {
             key={post.cuid}
             onDelete={() => props.handleDeletePost(post.cuid)}
             onThumbUp={() => props.handleThumbUp(post)}
+            onThumbDown={() => props.handleThumbDown(post)}
           />
         ))
       }

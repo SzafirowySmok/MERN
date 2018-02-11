@@ -6,6 +6,7 @@ export const ADD_POSTS = 'ADD_POSTS';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const THUMB_UP = 'THUMB_UP';
+export const THUMB_DOWN = 'THUMB_DOWN';
 
 // Export Actions
 export function addPost(post) {
@@ -93,5 +94,22 @@ export function thumbUpRequest(cuid, post) {
         votes: post.votes + 1
       },
     }).then(() => dispatch(thumbUp(cuid, post)));
+  };
+}
+
+export function thumbDown(cuid) {
+  return {
+    type: THUMB_DOWN,
+    cuid
+  };
+}
+
+export function thumbDownRequest(cuid, post) {
+  return (dispatch) => {
+    return callApi(`posts/${cuid}`, 'put', {
+      post: {
+        votes: post.votes - 1
+      },
+    }).then(() => dispatch(thumbDown(cuid, post)));
   };
 }
